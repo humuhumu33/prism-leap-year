@@ -1,6 +1,6 @@
-name = "PrismTemplateContract"
+name = "PrismLeapYear"
 version = "0.1.0"
-defaultTargets = ["PrismTemplateContract"]
+defaultTargets = ["PrismLeapYear"]
 
 [[lean_lib]]
-name = "PrismTemplateContract"
+name = "PrismLeapYear"

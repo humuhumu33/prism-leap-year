@@ -1,0 +1,23 @@
+\begin{lexlean}{LeapRule}
+\useglossary{lexlean.std.bool@1.2.0}
+\useglossary{lexlean.std.nat@1.2.0}
+\useglossary{prism.arch@1.0.0}
+\importmodule{LeapYear}
+\title{Text application model}
+\begin{semanticmodule}
+definition{
+  name: Leap,
+  parameters: [year : Nat],
+  result: Prop,
+  body: (((prim remainder year 4 0 : Nat) = 0) /\ (((prim remainder year 100 0 : Nat) = 0) -> ((prim remainder year 400 0 : Nat) = 0)))
+}
+
+theorem{
+  name: isLeap_decides,
+  parameters: [year : Nat],
+  statement: (((LeapYear::isLeap year) = true) <-> (Leap year)),
+  proof: linear_arithmetic{definitions: [Leap, LeapYear::isLeap]},
+  axioms: [Classical.choice, Quot.sound, propext]
+}
+\end{semanticmodule}
+\end{lexlean}
