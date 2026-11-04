@@ -68,12 +68,17 @@ fn leap_ly_01() {
 
     let answer = declaration(&model, "answer");
     assert!(
-        answer.contains("(if (isLeap (prim to_nat year : Nat)) then"),
+        answer.contains("(if (isLeap year) then"),
         "the answer must be decided by isLeap, the function LY-01 proves:\n{answer}"
     );
+    // Every request that is a non-empty run of decimal digits is answered by
+    // `answer` on the number those digits spell; everything else is invalid.
     let dispatch = declaration(&model, "dispatch");
     assert!(
-        dispatch.contains("| Option.some year => (answer year)"),
-        "every parsed year must be answered by answer:\n{dispatch}"
+        dispatch.contains("(isDigits value 0 (Foundation.Bytes::byteLength value))")
+            && dispatch.contains(
+                "then (answer (decimalFrom value 0 (Foundation.Bytes::byteLength value) 0))"
+            ),
+        "every digit-only request must be answered by answer on its decimal value:\n{dispatch}"
     );
 }
