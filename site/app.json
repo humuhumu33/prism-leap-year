@@ -1,0 +1,74 @@
+{
+  "name": "Leap year",
+  "shortName": "Leap year",
+  "live": "https://humuhumu33.github.io/prism-leap-year/",
+  "purpose": "Tells whether a Gregorian year is a leap year. Send a year as decimal digits; it answers leap or common, and invalid request for anything else.",
+  "inputLabel": "Year",
+  "placeholder": "2024",
+  "submitLabel": "Check",
+  "outputLabel": "Answer",
+  "answers": {
+    "positive": [
+      "leap"
+    ],
+    "negative": [
+      "common"
+    ],
+    "refusal": "invalid request"
+  },
+  "claim": "LY-01: the app answers leap exactly when the year is divisible by 4 and, if divisible by 100, also by 400.",
+  "proposition": {
+    "name": "Leap",
+    "text": "Leap year :=\n  year mod 4 = 0\n  /\\ (year mod 100 = 0 → year mod 400 = 0)",
+    "plain": "The year is divisible by 4, and a year divisible by 100 must also be divisible by 400."
+  },
+  "theorems": [
+    {
+      "name": "isLeap_decides",
+      "statement": "isLeap year = true ↔ Leap year, for every natural number year",
+      "how": "Proved by linear arithmetic over the remainders, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/LeapRule.lex.tex"
+    }
+  ],
+  "pinned": [
+    {
+      "name": "leap_ly_01",
+      "what": "The theorem's statement, the Gregorian rule in Leap, that answer is decided by isLeap, and that dispatch answers every non-empty run of decimal digits through answer on its value and refuses everything else. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/leap.rs"
+    }
+  ],
+  "trusted": [
+    {
+      "name": "SDK image",
+      "value": "ghcr.io/uor-foundation/prismpm-sdk-candidate@sha256:cd3b47d7a370c4a26b8285f5e9c3bb15e639973c55505c3809ddbe55352fea58"
+    },
+    {
+      "name": "Lean toolchain",
+      "value": "leanprover/lean4:v4.32.1"
+    },
+    {
+      "name": "LexLean compiler semantics",
+      "value": "5262e5b4c8b5668ae7066ad686757a6bb7f80c941d515fb9d586894fbc7de69a"
+    },
+    {
+      "name": "prism-code runtime, vendored",
+      "value": "0.2.0, tarball sha512-LBjO3WVy0ZHiWUjgAveUJoT6Fz7u+Oh0IEQyNXldX76jFMkOU44wnL0tp46Xx4/p1QLh8gItYGVRIvaPSW/a8g=="
+    },
+    {
+      "name": "Your browser",
+      "value": "runs the WebAssembly guest and this page"
+    }
+  ],
+  "attestations": {
+    "proof": {
+      "id": "3e8e57c9f6b7e1355927f25eba2d434bdd93c54b65d69aeef50bfa87fa67ae1d",
+      "url": "https://github.com/humuhumu33/prism-leap-year#the-claim"
+    },
+    "build": {
+      "id": "cc4dfb329378e97fe0e492a5febfca2049974c3bea653dd23e50de7f06f382d6",
+      "url": "https://github.com/humuhumu33/prism-leap-year/actions/runs/41929847105"
+    }
+  },
+  "repository": "https://github.com/humuhumu33/prism-leap-year",
+  "report": "https://github.com/humuhumu33/prism-leap-year#the-claim"
+}
