@@ -16,6 +16,10 @@
     ],
     "refusal": "invalid request"
   },
+  "promise": {
+    "headline": "Says leap exactly when the Gregorian calendar does.",
+    "detail": "A year divisible by 4 is a leap year, except a century, which must also be divisible by 400."
+  },
   "claim": "LY-01: the app answers leap exactly when the year is divisible by 4 and, if divisible by 100, also by 400.",
   "proposition": {
     "name": "Leap",
